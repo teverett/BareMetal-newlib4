@@ -66,7 +66,8 @@ After a lengthy compile you should have newlib installed in ./output and `test.a
 `./build-newlib.sh` compiles `test.app` as
 
 	gcc -I output/x86_64-pc-baremetal/include/ -c test.c -o test.o
-	ld -T app.ld -o test test.o output/x86_64-pc-baremetal/lib/libc.a
+	ld -T app.ld -o test output/x86_64-pc-baremetal/lib/crt0.o \
+	              test.o output/x86_64-pc-baremetal/lib/libc.a
 	objcopy -O binary test test.app
 
 to run `test.app`, copy it to your `BareMetal-OS/sys` directory and run

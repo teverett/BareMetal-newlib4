@@ -96,7 +96,7 @@ LDFLAGS="${LDFLAGS} -T app.ld"
 LDFLAGS="${LDFLAGS} -z max-page-size=0x1000"
 
 $CC $CFLAGS -c test.c -o test.o
-$LD $LDFLAGS -o test test.o $install/lib/libc.a
+$LD $LDFLAGS -o test $install/lib/crt0.o test.o $install/lib/libc.a
 $OBJCOPY -O binary test test.app
 
 echo Complete!

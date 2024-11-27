@@ -68,6 +68,9 @@ After a lengthy compile you should have newlib installed in ./output and `test.a
 	gcc -I output/x86_64-pc-baremetal/include/ -c test.c -o test.o
 	ld -T app.ld -o test.app test.o output/x86_64-pc-baremetal/lib/libc.a
 
+to run `test.app`, copy it to your `BareMetal-OS/sys` directory and run
+
+	APPS=test.app BMFS_SIZE=32 ./baremetal.sh bnr
 
 By default libc.a will be about 6.4 MiB. You can `strip` it to make it a little more compact. `strip` can decrease it to about 1.4 MiB.
 

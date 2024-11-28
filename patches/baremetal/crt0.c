@@ -12,7 +12,7 @@ int _start()
 {
 	zero_bss();
 
-	int retval = main(container->argc, container->argv);
+	int retval = main();
 	
 	fflush(stdout);
 

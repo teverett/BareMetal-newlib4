@@ -83,6 +83,7 @@ if [ ! -e lib/libc.a ]; then
 
 	cd $root
 	echo installing lib and include to .
+	rm -rf lib include
 	mv output/$target/lib .
 	mv output/$target/include .
 fi

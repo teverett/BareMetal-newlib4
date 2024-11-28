@@ -12,7 +12,8 @@ int _start()
 {
 	zero_bss();
 
-	int retval = main();
+	char *argv[1]={0};	
+	int retval = main(0, argv);
 	
 	fflush(stdout);
 

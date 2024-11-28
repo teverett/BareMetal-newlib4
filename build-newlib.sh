@@ -9,7 +9,6 @@ eval set -- "$opts"
 ver=4.4.0.20231231  #an ugly version number, but there's no 4.4.0 and this is the latest release
 root=`pwd`
 target=x86_64-pc-baremetal
-install=output/$target
 diff=false
 patch=true
 
@@ -31,7 +30,7 @@ CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET} -fomit-frame-pointer"
 CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET} -g"
 
 #if we have ;libc.a then skip getting and building libc.a
-if [ ! -e $install/lib/libc.a ]; then
+if [ ! -e lib/libc.a ]; then
 	if [ ! -e $tar ]; then
 		echo Downloading newlib
 		wget ftp://sourceware.org/pub/newlib/$tar
@@ -81,7 +80,11 @@ if [ ! -e $install/lib/libc.a ]; then
 	echo making
 	make -j
 	make install
+
 	cd $root
+	echo installing lib and include to .
+	mv output/$target/lib .
+	mv output/$target/include .
 fi
 
 echo Compiling test application...
@@ -90,13 +93,13 @@ CC=gcc
 LD=ld
 OBJCOPY=objcopy
 
-CFLAGS="${CFLAGS_FOR_TARGET}  -fno-stack-protector -I $install/include"
+CFLAGS="${CFLAGS_FOR_TARGET}  -fno-stack-protector -I $root/include"
 
 LDFLAGS="${LDFLAGS} -T app.ld"
 LDFLAGS="${LDFLAGS} -z max-page-size=0x1000"
 
 $CC $CFLAGS -c test.c -o test.o
-$LD $LDFLAGS -o test $install/lib/crt0.o test.o $install/lib/libc.a
+$LD $LDFLAGS -o test lib/crt0.o test.o lib/libc.a
 $OBJCOPY -O binary test test.app
 
 echo Complete!

@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: remove current autoconf and automake
-      run: brew remove autoconf automake
+      run: brew uninstall autoconf automake
 
     - name: get autoconf
       run: wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz

@@ -33,7 +33,7 @@ jobs:
       run: cd autoconf-2.69;./configure;make;sudo make install
 
     - name: build automake
-      run: cd automake-1.15.1./configure;make;sudo make install
+      run: cd automake-1.15.1;./configure;make;sudo make install
 
     - name: build
       run: sh build-newlib.sh

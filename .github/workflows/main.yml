@@ -18,14 +18,14 @@ jobs:
       run: brew install make gnu-sed
 
     - name: fix path for gmake
-      run: PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+      run: GITHUB_PATH="/opt/homebrew/opt/make/libexec/gnubin:$GITHUB_PATH"
 
     - name: fix path for sed
-      run: PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+      run: GITHUB_PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$GITHUB_PATH"
 
     - name: show path
-      run: echo $PATH
-      
+      run: echo $GITHUB_PATH
+
 #    - name: remove current autoconf and automake
 #      run: brew uninstall autoconf automake
 

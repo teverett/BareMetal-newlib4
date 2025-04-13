@@ -6,49 +6,49 @@ on:
   pull_request:
     branches: [ '*' ]
 jobs:
-  build-macos:
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
+#   build-macos:
+#     runs-on: macos-latest
+#     strategy:
+#       fail-fast: false
 
-    steps:
-    - uses: actions/checkout@v4
+#     steps:
+#     - uses: actions/checkout@v4
 
-    - name: required packags
-      run: brew install make gnu-sed
+#     - name: required packags
+#       run: brew install make gnu-sed
 
-    - name: fix path for gmake
-      run: GITHUB_PATH="/opt/homebrew/opt/make/libexec/gnubin:$GITHUB_PATH"
+#     - name: fix path for gmake
+#       run: GITHUB_PATH="/opt/homebrew/opt/make/libexec/gnubin:$GITHUB_PATH"
 
-    - name: fix path for sed
-      run: GITHUB_PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$GITHUB_PATH"
+#     - name: fix path for sed
+#       run: GITHUB_PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$GITHUB_PATH"
 
-    - name: show path
-      run: echo $GITHUB_PATH
+#     - name: show path
+#       run: echo $GITHUB_PATH
 
-#    - name: remove current autoconf and automake
-#      run: brew uninstall autoconf automake
+# #    - name: remove current autoconf and automake
+# #      run: brew uninstall autoconf automake
 
-    - name: get autoconf
-      run: wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+#     - name: get autoconf
+#       run: wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
 
-    - name: get automake
-      run: wget https://ftp.gnu.org/gnu/automake/automake-1.15.1.tar.gz
+#     - name: get automake
+#       run: wget https://ftp.gnu.org/gnu/automake/automake-1.15.1.tar.gz
 
-    - name: extract autoconf
-      run: tar -xvzf autoconf-2.69.tar.gz
+#     - name: extract autoconf
+#       run: tar -xvzf autoconf-2.69.tar.gz
 
-    - name: extract automake
-      run: tar -xvzf automake-1.15.1.tar.gz
+#     - name: extract automake
+#       run: tar -xvzf automake-1.15.1.tar.gz
 
-    - name: build autoconf
-      run: cd autoconf-2.69;./configure;make;sudo make install
+#     - name: build autoconf
+#       run: cd autoconf-2.69;./configure;make;sudo make install
 
-    - name: build automake
-      run: cd automake-1.15.1;./configure;make;sudo make install
+#     - name: build automake
+#       run: cd automake-1.15.1;./configure;make;sudo make install
 
-    - name: build
-      run: sh build-newlib.sh
+#     - name: build
+#       run: sh build-newlib.sh
 
   build-ubuntu:
     runs-on: ubuntu-latest

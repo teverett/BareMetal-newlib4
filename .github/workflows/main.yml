@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: required packags
-      run: brew install make
+      run: brew install make gnu-sed
 
 #    - name: remove current autoconf and automake
 #      run: brew uninstall autoconf automake

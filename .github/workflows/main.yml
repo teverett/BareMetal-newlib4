@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: required packages
+      run: sudo apt install autoconf automake
+
+    - name: build
+      run: sh build-newlib.sh
+      
+
